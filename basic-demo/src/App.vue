@@ -13,7 +13,7 @@ const isShow = ref(true)
 <template>
   <div>
     <keep-alive>
-      <LifeDemo v-show="isShow" />
+      <LifeDemo v-if="isShow" />
     </keep-alive>
 
     <button @click="isShow = !isShow">toogle</button>
