@@ -48,3 +48,5 @@ flush?: 'pre' | 'sync' | 'post'
 #### toValue
 
 ####
+
+一般异步组件都包裹在 suspense 里面去写

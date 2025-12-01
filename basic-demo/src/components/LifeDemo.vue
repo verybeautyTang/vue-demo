@@ -15,6 +15,9 @@ import {
   onBeforeUnmount,
   onUnmounted,
   onBeforeUpdate,
+  onRenderTracked,
+  onRenderTriggered,
+  onErrorCaptured,
   ref,
 } from 'vue'
 
@@ -48,4 +51,20 @@ onBeforeUnmount(() => {
 onUnmounted(() => {
   console.log('onUnmounted组件卸载完成')
 })
+
+onRenderTracked((e) => {
+  console.log('onRenderTracked', e)
+})
+
+onRenderTriggered((e) => {
+  console.log('onRenderTriggered', e)
+})
+
+// 异常捕获，处理错误边界的逻辑
+onErrorCaptured((err, instance, info) => {
+  console.log('onErrorCaptured', err, instance, info)
+  return false
+})
+// 上面进行了错误的捕获，所以这里是不会白屏处理的
+// throw new Error('if you~')
 </script>

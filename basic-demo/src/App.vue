@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import SyncComponent from './components/SyncComponent.vue'
 import WatchSyncEffect from './components/WatchSyncEffect.vue'
 import WatchPostEffect from './components/WatchPostEffect.vue'
 import WatchEffectDemo from './components/WatchEffectDemo.vue'
 import WatchDemo from './components/WatchDemo.vue'
 import UtilDemo from './components/UtilDemo.vue'
 import LifeDemo from './components/LifeDemo.vue'
+import coustomDirective from './components/coustomDirective.vue'
 import { ref } from 'vue'
 
 const isShow = ref(true)
@@ -12,6 +14,8 @@ const isShow = ref(true)
 
 <template>
   <div>
+    <coustomDirective />
+    <SyncComponent v-if="Math.random() > 0.5" />
     <keep-alive>
       <LifeDemo v-if="isShow" />
     </keep-alive>
