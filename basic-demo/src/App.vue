@@ -3,10 +3,21 @@ import WatchSyncEffect from './components/WatchSyncEffect.vue'
 import WatchPostEffect from './components/WatchPostEffect.vue'
 import WatchEffectDemo from './components/WatchEffectDemo.vue'
 import WatchDemo from './components/WatchDemo.vue'
+import UtilDemo from './components/UtilDemo.vue'
+import LifeDemo from './components/LifeDemo.vue'
+import { ref } from 'vue'
+
+const isShow = ref(true)
 </script>
 
 <template>
   <div>
+    <keep-alive>
+      <LifeDemo v-show="isShow" />
+    </keep-alive>
+
+    <button @click="isShow = !isShow">toogle</button>
+    <UtilDemo />
     <WatchSyncEffect />
     <WatchPostEffect />
     <WatchEffectDemo />
