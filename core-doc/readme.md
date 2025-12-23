@@ -62,6 +62,8 @@ return { code, ast, preamble, source, errors, tips, map }
 
 - 响应式数据原理
   - proxy + reflect
+    对于不同的数据类型，响应式的规则有所区别，mutableHandlers 和 mutableCollectionHandlers
+    Proxy set 方法进行触发， proxy get 方法进行收集
   - objectDefineProperty 对比
 - 依赖收集、更新触发
   - track（收集依赖）
@@ -75,6 +77,10 @@ return { code, ast, preamble, source, errors, tips, map }
 ### 运行时
 
 dom 操作，指令的处理、内置组件
+
+- runtime-core (大多数都是在 core 里面)
+  renderer,核心就是用最小的代价将更新的数据渲染到视图上，最小的代价就是 diff
+- runtime-dom（对 core 进行补充）
 
 ### 总结
 
@@ -93,3 +99,29 @@ dom 操作，指令的处理、内置组件
   - runtime-core
   - runtime-dom
 - diff
+- vue1 简单 diff （时间复杂度很高，logn 或者 n\*n，性能很差）
+  - 原理就是去一个一个排查变没变，没变的话就复用，如果变了就继续对比，直到找到没变的位置为止
+  - 有点类似冒泡排序
+  - 只有 1 个指针
+- vue2 双端 diff（头头、尾尾、头尾比较）
+  - 有 4 个指针
+  - 进行交叉处理
+- vue3 快速 diff(双端 diff + 简单 diff)
+  - 1、预处理
+    - 
+  - 2、最长递增子序列（动态规划）
+    - patch
+    - patchKeyedChildren
+- diff 补充说明
+  - 算法
+    - 动态路径规划
+    - 最长递增子序列
+  - renderer 函数中对 5 中情况的处理
+    - 头头
+    - 尾尾
+    - 挂载
+    - 卸载
+    - 最长递增子序列
+      - 新子节点处理
+      - 卸载子节点处理
+      - 挂载子节点处理
